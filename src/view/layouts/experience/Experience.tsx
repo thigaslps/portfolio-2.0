@@ -102,7 +102,7 @@ export default function Experience() {
   }, []);
   return (
     <>
-      <div className="mb-[7rem]" id="experienceSection">
+      <div id="experienceSection">
         <div className="flex flex-col gap-[3rem]">
           <div
             ref={containerTitleAllExperience}
