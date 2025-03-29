@@ -11,12 +11,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Poppins", "sans-serif"],
-        montserrat: ["Montserrat", "sans-serif"],
         inter: ["Inter", "sans-serif"],
-        poppins: ["Poppins", "sans-serif"],
-        robotoMono: ["Roboto Mono", "monospace"],
-        michroma: ["Michroma", "sans-serif"],
         lora: ["Lora", "serif"],
         anton: ["Anton", "sans-serif"],
       },
