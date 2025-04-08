@@ -22,8 +22,11 @@ export default function Projects() {
   const projectsToShow = [
     { name: "apiTaskmanage", techs: "Node.js" },
     { name: "Climate-System", techs: "Next.js ○ Typescript ○ Scss" },
-    { name: "portfolio", techs: "Next.js ○ Css ○ AOS animation" },
-    { name: "portfolio-2.0", techs: "Next.js ○ GSAP ○ Motion ○ Tailwind" },
+    { name: "portfolio-2.0", techs: "Next.js ○ GSAP ○ Motion ○ Tailwind", description:
+      `Portfólio 2.0 ${"-"} Uma evolução do meu trabalho como desenvolvedor. 
+      Aqui você encontra meus projetos mais recentes e explorando tecnologias modernas. 
+      Cada detalhe foi pensado para refletir minha experiência 
+      e habilidades, com um design minimalista e uma navegação fluida.`},
     {
       name: "taskmanegement",
       techs: "Next.js ○ Typescript ○ Scss",

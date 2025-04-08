@@ -11,12 +11,12 @@ export default function Experience() {
   const experienceToShow = [
     {
       name: "ForeLegal",
-      ocupation: "FullStack Developer",
+      ocupation: "Desenvolvedor FullStack",
       time: "Out 2024 - presente",
     },
     {
       name: "X Software House",
-      ocupation: "FullStack Developer",
+      ocupation: "Desenvolvedor FullStack",
       time: "Ago 2024 - Nov 2024",
     },
   ];
