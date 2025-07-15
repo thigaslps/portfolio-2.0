@@ -20,19 +20,31 @@ export default function Projects() {
   const containerTitleAllProjects = useRef<HTMLDivElement>(null);
 
   const projectsToShow = [
-    { name: "spellchecker", techs: "Typescript", description: "Biblioteca que corrige palavras com erros de digitação ou acentuação em tempo real. Se encontrar uma única sugestão próxima, corrige automaticamente. Caso haja múltiplas opções, exibe um card interativo para o usuário escolher. Funciona 100% offline, sem chamadas externas." },
-    { name: "apiTaskmanage", techs: "Node.js" },
-    { name: "Climate-System", techs: "Next.js ○ Typescript ○ Scss" },
-    { name: "portfolio-2.0", techs: "Next.js ○ GSAP ○ Motion ○ Tailwind", description:
-      `Portfólio 2.0 ${"-"} Uma evolução do meu trabalho como desenvolvedor. 
-      Aqui você encontra meus projetos mais recentes e explorando tecnologias modernas. 
-      Cada detalhe foi pensado para refletir minha experiência 
-      e habilidades, com um design minimalista e uma navegação fluida.`},
     {
-      name: "taskmanegement",
+      name: "spellchecker",
+      techs: "Typescript",
+      description:
+        "Biblioteca que corrige palavras com erros de digitação ou acentuação em tempo real. Se encontrar uma única sugestão próxima, corrige automaticamente. Caso haja múltiplas opções, exibe um card interativo para o usuário escolher. Funciona 100% offline, sem chamadas externas.",
+    },
+    {
+      name: "apiTaskmanage",
+      techs: "Node.js",
+      description:
+        "API RESTful desenvolvida em Node.js para gerenciamento de tarefas, com suporte a criação, atualização, listagem e exclusão de atividades. Estruturada para ser escalável, segura e fácil de integrar com front-ends modernos.",
+    },
+    {
+      name: "Climate-System",
       techs: "Next.js ○ Typescript ○ Scss",
       description:
-        "Banco de dados temporariamente indisponível para atualização. Projeto retornará em breve.",
+        "Aplicação web desenvolvida para teste técnico, TypeScript e SCSS para exibir dados climáticos em tempo real. Projeto integrado com API externa de clima para exibir informações de forma dinâmica e responsiva.",
+    },
+    {
+      name: "portfolio-2.0",
+      techs: "Next.js ○ GSAP ○ Motion ○ Tailwind",
+      description: `Portfólio 2.0 ${"-"} Uma evolução do meu trabalho como desenvolvedor. 
+      Aqui você encontra meus projetos mais recentes e explorando tecnologias modernas. 
+      Cada detalhe foi pensado para refletir minha experiência 
+      e habilidades, com um design minimalista e uma navegação fluida.`,
     },
   ];
 
@@ -42,9 +54,8 @@ export default function Projects() {
         const response = await fetch("api/apiGithub", {
           method: "GET",
         });
-
+        const data = await response.json();
         if (!response.ok) {
-          const data = await response.json();
           toast(`${data.message}`, {
             icon: "❌",
             style: {
@@ -54,8 +65,6 @@ export default function Projects() {
             },
           });
         }
-
-        const data = await response.json();
 
         setData(data);
       };
@@ -181,62 +190,61 @@ export default function Projects() {
             ref={containerProjectRef}
             className="flex gap-[3rem] flex-col flex-wrap"
           >
-            {data
-              ? data.content
-                  .filter((item: Repo) =>
-                    projectsToShow.some((project) => project.name === item.name)
-                  )
-                  .map((item: Repo, index: number) => {
-                    return (
-                      <div
-                        className="project flex flex-col gap-2"
-                        key={`div-projects-${index}`}
+            {projectsToShow.map((project, index) => {
+              const githubData = data?.content.find(
+                (item: Repo) => item.name === project.name
+              ) as Repo | undefined;
+              if (!githubData) return null;
+
+              return (
+                <div
+                  className="project flex flex-col gap-2"
+                  key={`div-projects-${index}`}
+                >
+                  <div className="flex gap-4 flex-col sm:flex-row">
+                    <span className="text-4xl sm:text-7xl font-anton text-lightText">
+                      {project.name}
+                    </span>
+                    <div className="flex gap-2">
+                      <a
+                        href={githubData.html_url}
+                        target="_blank"
+                        rel="URL repo"
                       >
-                        <div className="flex gap-4 flex-col sm:flex-row">
-                          <span className="text-4xl sm:text-7xl font-anton text-lightText">
-                            {item.name}
-                          </span>
-                          <div className="flex gap-2">
-                            <a
-                              href={item.html_url}
-                              target="_blank"
-                              rel="URL repo"
-                            >
-                              <FontAwesomeIcon
-                                icon={faUpRightFromSquare}
-                                className="text-lightText"
-                              />
-                            </a>
-                            {item.homepage ? (
-                              <a
-                                href={item.homepage}
-                                target="_blank"
-                                rel="URL Deploy"
-                              >
-                                <FontAwesomeIcon
-                                  icon={faLink}
-                                  className="text-lightText"
-                                />
-                              </a>
-                            ) : null}
-                          </div>
-                        </div>
+                        <FontAwesomeIcon
+                          icon={faUpRightFromSquare}
+                          className="text-lightText"
+                        />
+                      </a>
+                      {githubData.homepage ? (
+                        <a
+                          href={githubData.homepage}
+                          target="_blank"
+                          rel="URL Deploy"
+                        >
+                          <FontAwesomeIcon
+                            icon={faLink}
+                            className="text-lightText"
+                          />
+                        </a>
+                      ) : null}
+                    </div>
+                  </div>
 
-                        <span className="text-sm font-inter text-subtitleColor">
-                          {projectsToShow[index].techs}
-                        </span>
+                  <span className="text-sm font-inter text-subtitleColor">
+                    {project.techs}
+                  </span>
 
-                        <span className="text-sm font-inter text-subtitleColor">
-                          {projectsToShow[index]?.description}
-                        </span>
+                  <span className="text-sm font-inter text-subtitleColor">
+                    {project.description}
+                  </span>
 
-                        <div className="lineProject w-full h-[1px]">
-                          <div className="w-full h-[1px] bg-GreyDarkerBgColor"></div>
-                        </div>
-                      </div>
-                    );
-                  })
-              : null}
+                  <div className="lineProject w-full h-[1px]">
+                    <div className="w-full h-[1px] bg-GreyDarkerBgColor"></div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
