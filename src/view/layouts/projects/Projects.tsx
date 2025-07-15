@@ -20,6 +20,7 @@ export default function Projects() {
   const containerTitleAllProjects = useRef<HTMLDivElement>(null);
 
   const projectsToShow = [
+    { name: "spellchecker", techs: "Typescript", description: "Biblioteca que corrige palavras com erros de digitação ou acentuação em tempo real. Se encontrar uma única sugestão próxima, corrige automaticamente. Caso haja múltiplas opções, exibe um card interativo para o usuário escolher. Funciona 100% offline, sem chamadas externas." },
     { name: "apiTaskmanage", techs: "Node.js" },
     { name: "Climate-System", techs: "Next.js ○ Typescript ○ Scss" },
     { name: "portfolio-2.0", techs: "Next.js ○ GSAP ○ Motion ○ Tailwind", description:
@@ -70,8 +71,6 @@ export default function Projects() {
       });
     }
   }, []);
-
-  console.log(data);
 
   useGSAP(
     () => {
