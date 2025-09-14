@@ -189,7 +189,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex gap-4 w-[12rem] flex-wrap">
                   <a
-                    href="https://github.com/thigasfella"
+                    href="https://github.com/thigaslps"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const url = "https://api.github.com/users/thigasfella/repos";
+  const url = "https://api.github.com/users/thigaslps/repos";
 
   try {
     const response = await fetch(url, {
