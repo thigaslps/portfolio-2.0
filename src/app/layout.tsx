@@ -22,6 +22,10 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Michroma&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+          rel="stylesheet"
+        />
         <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon" />
         <meta
           name="viewport"
