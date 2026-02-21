@@ -162,7 +162,7 @@ export default function HomePage() {
               <span className="text-base font-normal font-inter mx-auto text-justify text-subtitleColor w-full leading-[.95]">
                 Olá! Meu nome é{" "}
                 <span className="font-medium text-lightText">Thiago</span> e sou
-                um desenvolvedor fullstack. Com mais de um ano de experiência em
+                um desenvolvedor fullstack. Com mais de dois anos de experiência em
                 desenvolvimento web, estou sempre em busca de aprimoramento,
                 explorando novas tecnologias e criando soluções inovadoras.
               </span>

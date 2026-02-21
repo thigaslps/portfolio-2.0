@@ -27,10 +27,16 @@ export default function Projects() {
         "Biblioteca que corrige palavras com erros de digitação ou acentuação em tempo real. Se encontrar uma única sugestão próxima, corrige automaticamente. Caso haja múltiplas opções, exibe um card interativo para o usuário escolher. Funciona 100% offline, sem chamadas externas.",
     },
     {
-      name: "apiTaskmanage",
-      techs: "Node.js",
+      name: "apiTaskManagerGlobalParts",
+      techs: "Java ○ spring boot",
       description:
-        "API RESTful desenvolvida em Node.js para gerenciamento de tarefas, com suporte a criação, atualização, listagem e exclusão de atividades. Estruturada para ser escalável, segura e fácil de integrar com front-ends modernos.",
+        "API RESTful desenvolvida em Java com Spring Boot para gerenciamento de tarefas, com suporte a criação, atualização, listagem e exclusão de atividades. Estruturada para ser escalável, segura e fácil de integrar com front-ends modernos.",
+    },
+    {
+      name: "taskManagerGlobalParts",
+      techs: "Next.js ○ Typescript ○ Tailwind ○ Motion",
+      description:
+        "Front-end kanban para gerenciamento de tarefas, com suporte a criação, atualização, listagem e exclusão de atividades. Estruturada para ser escalável, segura e fácil de integrar com front-ends modernos.",
     },
     {
       name: "Climate-System",
