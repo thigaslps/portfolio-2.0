@@ -10,6 +10,11 @@ export default function Experience() {
 
   const experienceToShow = [
     {
+      name: "Simplex Analytics",
+      ocupation: "Desenvolvedor FullStack | SEO",
+      time: "Fev 2026 - presente",
+    },
+    {
       name: "ForeLegal",
       ocupation: "Desenvolvedor FullStack",
       time: "Out 2024 - presente",
