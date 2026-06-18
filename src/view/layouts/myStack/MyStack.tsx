@@ -116,25 +116,32 @@ export default function MyStack() {
             />
 
             <span className="text-[1.2rem] font-inter text-subtitleColor">
-              HABILIDADES
+              STACK
             </span>
           </div>
-          <div className="flex justify-between flex-col gap-[3rem] md:flex-row">
+          <div className="grid gap-[3rem] md:grid-cols-[0.8fr_1.2fr]">
             <div
               ref={containerTitle}
-              className="text-4xl sm:text-5xl font-anton text-lightText"
+              className="flex flex-col gap-5"
             >
-              TECNOLOGIAS
+              <h2 className="text-4xl sm:text-5xl font-anton text-lightText">
+                Tecnologias para produtos rápidos e fáceis de evoluir
+              </h2>
+              <p className="font-inter text-base leading-7 text-subtitleColor">
+                A escolha da stack considera performance, SEO, integrações,
+                manutenção e custo de operação. O objetivo é entregar algo que
+                funcione bem no lançamento e continue simples de melhorar.
+              </p>
             </div>
 
             <div
               ref={containerTechsRef}
-              className="flex gap-[3rem] flex-col sm:flex-wrap sm:flex-row sm:items-center md:flex-row"
+              className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
             >
               {imagesTechs.map((items: TechItem, index: number) => {
                 return (
                   <div
-                    className="tech flex items-center gap-4"
+                    className="tech flex min-h-[72px] items-center gap-4 rounded-md border border-white/10 bg-white/[0.03] px-4"
                     key={`div-${index}`}
                   >
                     <Image

@@ -13,16 +13,19 @@ export default function Experience() {
       name: "Simplex Analytics",
       ocupation: "Desenvolvedor FullStack | SEO",
       time: "Fev 2026 - presente",
+      highlights: "Desenvolvimento web, melhorias técnicas de SEO e suporte a produtos digitais orientados por dados.",
     },
     {
       name: "ForeLegal",
       ocupation: "Desenvolvedor FullStack",
       time: "Out 2024 - presente",
+      highlights: "Construção de interfaces, APIs e funcionalidades para produto jurídico com foco em consistência e evolução.",
     },
     {
       name: "X Software House",
       ocupation: "Desenvolvedor FullStack",
       time: "Ago 2024 - Nov 2024",
+      highlights: "Participação em projetos sob demanda, integração entre front-end e back-end e entregas com prazo definido.",
     },
   ];
 
@@ -111,49 +114,68 @@ export default function Experience() {
         <div className="flex flex-col gap-[3rem]">
           <div
             ref={containerTitleAllExperience}
-            className="flex items-center gap-4"
+            className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end"
           >
-            <Image
-              src={"/iconsAnimated/build.gif"}
-              alt="gif build"
-              width={40}
-              height={40}
-              unoptimized
-            />
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-4">
+                <Image
+                  src={"/iconsAnimated/build.gif"}
+                  alt="gif build"
+                  width={40}
+                  height={40}
+                  unoptimized
+                />
 
-            <span className="text-[1.2rem] font-inter text-subtitleColor">
-              EXPERIÊNCIA
-            </span>
+                <span className="text-[1.2rem] font-inter text-subtitleColor">
+                  EXPERIÊNCIA
+                </span>
+              </div>
+              <h2 className="font-anton text-5xl leading-none text-lightText sm:text-6xl">
+                Vivência em produto, software house e performance
+              </h2>
+            </div>
+            <p className="font-inter text-base leading-7 text-subtitleColor">
+              Já atuei em contextos diferentes, do desenvolvimento de features
+              ao cuidado com SEO técnico. Isso ajuda a enxergar o projeto além
+              da tela: performance, manutenção e objetivo comercial entram no
+              escopo desde o início.
+            </p>
           </div>
 
           <div
             ref={containerExperienceRef}
-            className="flex gap-[3rem] flex-col flex-wrap"
+            className="grid gap-5"
           >
             {experienceToShow.map((item, index: number) => {
               return (
-                <div
-                  className="experience flex flex-col gap-2"
+                <article
+                  className="experience grid gap-5 rounded-md border border-white/10 bg-white/[0.03] p-5 md:grid-cols-[0.7fr_1.3fr]"
                   key={`div-experience-${index}`}
                 >
-                  <span className="text-sm font-inter text-subtitleColor">
-                    {item.name}
-                  </span>
+                  <div className="flex flex-col gap-2">
+                    <span className="text-sm font-inter text-generalText">
+                      {item.time}
+                    </span>
 
-                  <div className="flex gap-4">
-                    <span className="text-4xl sm:text-7xl font-anton text-lightText">
-                      {item.ocupation}
+                    <span className="text-2xl font-anton text-lightText">
+                      {item.name}
                     </span>
                   </div>
 
-                  <span className="text-sm font-inter text-subtitleColor">
-                    {item.time}
-                  </span>
+                  <div className="flex flex-col gap-4">
+                    <h3 className="text-4xl font-anton leading-none text-lightText sm:text-5xl">
+                      {item.ocupation}
+                    </h3>
 
-                  <div className="lineExperience w-full h-[1px]">
-                    <div className="w-full h-[1px] bg-GreyDarkerBgColor"></div>
+                    <p className="text-sm font-inter leading-6 text-subtitleColor">
+                      {item.highlights}
+                    </p>
+
+                    <div className="lineExperience w-full h-[1px]">
+                      <div className="w-full h-[1px] bg-GreyDarkerBgColor"></div>
+                    </div>
                   </div>
-                </div>
+                </article>
               );
             })}
           </div>

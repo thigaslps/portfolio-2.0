@@ -106,17 +106,11 @@ export default function About() {
       );
 
       gsap.to(refBelt.current, {
-        scrollTrigger: {
-          trigger: document.documentElement,
-          start: 0,
-          end: window.innerHeight,
-          onUpdate: (e) => (direction = e.direction * -1),
-          scrub: true,
-        },
-        x: "-100px",
+        xPercent: -50,
+        duration: 28,
+        ease: "none",
+        repeat: -1,
       });
-
-      requestAnimationFrame(animation);
     }, 500);
   }, []);
 
@@ -124,30 +118,10 @@ export default function About() {
     ScrollTrigger.refresh();
   }, []);
 
-  const firstText = useRef<HTMLSpanElement>(null);
-  const secondText = useRef<HTMLSpanElement>(null);
-  let xPercent = 0;
-  let direction = -1;
-
-  const animation = () => {
-    if (xPercent <= -117.5) {
-      xPercent = 0;
-    }
-
-    if (xPercent > 0) {
-      xPercent = -117.5;
-    }
-    gsap.set(firstText.current, { xPercent: xPercent });
-    gsap.set(secondText.current, { xPercent: xPercent });
-
-    xPercent += 0.15 * direction;
-    requestAnimationFrame(animation);
-  };
-
   return (
     <>
-      <div id="aboutSection" className="flex mb-[8rem] flex-col gap-6">
-        <div className="w-full relative overflow-hidden">
+      <div id="aboutSection" className="flex mb-[8rem] flex-col gap-6 pt-20 sm:pt-28">
+        <div className="w-full relative overflow-hidden py-8 sm:py-12">
           <div
             className="w-full"
             style={{
@@ -161,61 +135,89 @@ export default function About() {
           >
             <div
               ref={refBelt}
-              className="relative flex gap-4 whitespace-nowrap"
+              className="flex w-max whitespace-nowrap will-change-transform"
             >
-              <span
-                ref={firstText}
-                className="m-0 text-white text-8xl font-lora inline-block"
-              >
-                Codifique. Crie. Evolua.
-              </span>
-
-              <span
-                ref={secondText}
-                className="m-0 text-white absolute left-[1216px] text-8xl font-lora inline-block"
-              >
-                Codifique. Crie. Evolua.
-              </span>
+              {[0, 1].map((item) => (
+                <span
+                  key={item}
+                  className="shrink-0 pr-16 font-lora text-6xl text-white/90 sm:text-7xl lg:text-8xl"
+                >
+                  Planeje. Desenvolva. Lance. Venda.
+                </span>
+              ))}
             </div>
           </div>
         </div>
         <span
           ref={refTitle}
-          className="font-inter text-subtitleColor text-sm font-normal leading-[.1] mt-[2rem]"
+          className="font-inter text-generalText text-sm font-semibold uppercase tracking-[0.24em] mt-[2rem]"
         >
-          Conheça um pouco mais sobre mim
+          Por trás da entrega
         </span>
         <div ref={refLine} className="w-full h-[1px]">
           <div className="w-full h-[1px] bg-GreyDarkerBgColor"></div>
         </div>
-        <div className="flex flex-col items-center w-full gap-[3rem] md:flex-row lg:flex-row">
-          <div ref={refPhoto} className="w-full hidden md:block">
+        <div className="grid w-full gap-[3rem] md:grid-cols-[0.9fr_1.1fr] md:items-center">
+          <div ref={refPhoto} className="w-full">
             <Image
-              src="/photo.jpg"
+              src="/profile-photo.png"
               width={500}
               height={500}
               alt="Foto de Thiago"
-              className="rounded-2xl md:w-[400px]"
+              className="aspect-[4/5] w-full rounded-md border border-white/10 object-cover shadow-custom md:max-w-[420px]"
             />
           </div>
 
-          <div className="w-[100%] flex flex-col gap-[1rem] lg:w-auto">
+          <div className="w-[100%] flex flex-col gap-6 lg:w-auto">
             <div ref={refTitleDescription} className="leading-none">
-              <span className="text-middleGrayColor leading-none font-inter font-medium text-5xl md:text-3xl">
-                Olá, muito prazer!
-              </span>
+              <h2 className="text-middleGrayColor leading-none font-anton text-5xl sm:text-6xl">
+                Desenvolvimento com visão de negócio.
+              </h2>
             </div>
             <div
               ref={refSubtitleDescription}
-              className="text-justify md:w-[100%]"
+              className="flex flex-col gap-6 md:w-[100%]"
             >
-              <span className="text-subtitleColor leading-none text-base">
-                Sou Thiago, desenvolvedor Fullstack apaixonado por tecnologia.
-                Gosto de criar soluções funcionais e intuitivas, equilibrando
-                desempenho, escalabilidade e experiência do usuário. Sempre em
-                busca de aprendizado, acredito no impacto real da tecnologia na
-                vida das pessoas e nos negócios.
-              </span>
+              <p className="text-subtitleColor leading-7 text-base">
+                Sou Thiago, desenvolvedor fullstack. Entro no projeto para
+                conectar design, tecnologia e objetivo comercial: captar leads,
+                apresentar seu serviço com clareza e criar sistemas que não
+                travem quando a operação crescer.
+              </p>
+
+              <div className="grid gap-4 sm:grid-cols-3">
+                <div className="border-l border-generalText pl-4">
+                  <strong className="block font-anton text-3xl text-lightText">
+                    Clareza
+                  </strong>
+                  <span className="font-inter text-sm text-subtitleColor">
+                    escopo e próximos passos definidos
+                  </span>
+                </div>
+                <div className="border-l border-generalText pl-4">
+                  <strong className="block font-anton text-3xl text-lightText">
+                    Velocidade
+                  </strong>
+                  <span className="font-inter text-sm text-subtitleColor">
+                    páginas leves e responsivas
+                  </span>
+                </div>
+                <div className="border-l border-generalText pl-4">
+                  <strong className="block font-anton text-3xl text-lightText">
+                    Evolução
+                  </strong>
+                  <span className="font-inter text-sm text-subtitleColor">
+                    base pronta para novas features
+                  </span>
+                </div>
+              </div>
+
+              <a
+                href="#projectsSection"
+                className="inline-flex min-h-12 w-fit items-center justify-center rounded-md border border-white/20 px-5 font-inter text-sm font-bold uppercase tracking-[0.18em] text-lightText transition-colors hover:border-generalText hover:text-generalText"
+              >
+                Ver trabalhos recentes
+              </a>
             </div>
           </div>
         </div>

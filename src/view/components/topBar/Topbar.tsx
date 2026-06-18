@@ -2,6 +2,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useLenis } from "lenis/react";
 import Link from "next/link";
+import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function Topbar() {
   const animationAppearScale = {
@@ -10,17 +13,19 @@ export default function Topbar() {
     transition: { duration: 0.5, type: "spring", stiffness: 100 },
     exit: { opacity: 0, scale: 0 },
   };
-  type Link = {
+  type NavLink = {
     name: string;
     link: string;
   };
 
   const links = [
     { name: "INÍCIO", link: "/" },
-    { name: "SOBRE MIM", link: "#aboutSection" },
+    { name: "SERVIÇOS", link: "#servicesSection" },
     { name: "PROJETOS", link: "#projectsSection" },
     { name: "EXPERIÊNCIA", link: "#experienceSection" },
   ];
+  const whatsappLink =
+    "https://wa.me/5562986251491?text=Ol%C3%A1%2C%20Thiago!%20Vim%20do%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto.";
 
   const [toggleMenu, setToggleMenu] = useState(false);
 
@@ -119,25 +124,60 @@ export default function Topbar() {
     <>
       <header>
         <nav>
-          <div className="fixed flex flex items-center justify-between w-full z-50 p-3">
-            <div></div>
-
-            <motion.div
-              variants={animationAppearScale}
-              initial="initial"
-              animate="animate"
-              exit={animationAppearScale.exit}
-              whileInView="whileInView"
-              transition={animationAppearScale.transition}
-              className="flex justify-end cursor-pointer"
-            >
-              <p
-                onClick={toggleMenuFunc}
-                className="text-sm cursor-pointer text-lightText"
+          <div className="fixed left-0 top-0 z-50 w-full p-3">
+            <div className="mx-auto flex max-w-[1180px] items-center justify-between rounded-md border border-white/10 bg-primary/80 px-4 py-3 shadow-custom backdrop-blur-xl">
+              <Link
+                href="/"
+                className="font-anton text-2xl tracking-wide text-lightText"
               >
-                Menu
-              </p>
-            </motion.div>
+                THIAGO<span className="text-generalText">.DEV</span>
+              </Link>
+
+              <div className="hidden items-center gap-6 md:flex">
+                {links.slice(1).map((link: NavLink) => (
+                  <Link
+                    href={link.link}
+                    key={link.name}
+                    className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-subtitleColor transition-colors hover:text-generalText"
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-3">
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden h-10 items-center justify-center gap-2 rounded-md bg-generalText px-4 font-inter text-xs font-bold uppercase leading-none tracking-[0.08em] text-primary transition-colors hover:bg-[#ffbd4f] sm:inline-flex"
+                >
+                  <Image
+                    src="/icons/whatsapp.png"
+                    alt=""
+                    width={18}
+                    height={18}
+                    className="block h-[18px] w-[18px] shrink-0 object-contain"
+                  />
+                  <span className="block pt-[1px]">WhatsApp</span>
+                </a>
+                <motion.button
+                  variants={animationAppearScale}
+                  initial="initial"
+                  animate="animate"
+                  exit={animationAppearScale.exit}
+                  whileInView="whileInView"
+                  transition={animationAppearScale.transition}
+                  onClick={toggleMenuFunc}
+                  className="inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-md border border-white/15 bg-white/10 px-4 font-inter text-xs font-bold uppercase leading-none tracking-[0.12em] text-lightText transition-colors hover:border-generalText hover:text-generalText"
+                  type="button"
+                  aria-label="Abrir menu"
+                >
+                  <FontAwesomeIcon icon={faBars} className="h-3.5 w-3.5 shrink-0" />
+                  <span className="block pt-[1px]">Menu</span>
+                </motion.button>
+              </div>
+            </div>
           </div>
         </nav>
         <AnimatePresence>
@@ -160,12 +200,15 @@ export default function Topbar() {
                   variants={exitVars}
                   className="display flex justify-end cursor-pointer text-lightText"
                 >
-                  <p
+                  <button
                     onClick={toggleMenuFunc}
-                    className="text-sm cursor-pointer"
+                    className="inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-md border border-white/15 bg-white/10 px-4 font-inter text-xs font-bold uppercase leading-none tracking-[0.12em] text-lightText"
+                    type="button"
+                    aria-label="Fechar menu"
                   >
-                    Fechar
-                  </p>
+                    <FontAwesomeIcon icon={faXmark} className="h-3.5 w-3.5 shrink-0" />
+                    <span className="block pt-[1px]">Fechar</span>
+                  </button>
                 </motion.div>
               </motion.div>
               <div className="flex flex-col h-full w-full items-center justify-center">
@@ -176,7 +219,7 @@ export default function Topbar() {
                   exit="initial"
                   className="flex flex-col h-full w-full items-center justify-center gap-6"
                 >
-                  {links.map((link: Link, index: number) => (
+                  {links.map((link: NavLink, index: number) => (
                     <Link
                       href={link.link}
                       key={index}

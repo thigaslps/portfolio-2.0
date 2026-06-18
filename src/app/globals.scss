@@ -2,14 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body{
+html {
+  scroll-behavior: smooth;
+}
+
+body {
   overflow-x: hidden;
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
 }
 
 html,
@@ -17,16 +23,29 @@ body {
   background-color: #1A1A1A;
 }
 
+::selection {
+  background-color: #F5A623;
+  color: #1A1A1A;
+}
+
+a {
+  text-decoration: none;
+}
+
+#tsparticles {
+  pointer-events: none;
+}
+
 .container {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
-  padding-right: 1rem;
-  padding-left: 1rem;
+  padding-right: 1.25rem;
+  padding-left: 1.25rem;
 }
 
 @media (min-width: 1148px) {
   .container {
-      max-width: 1148px;
+    max-width: 1180px;
   }
 }
