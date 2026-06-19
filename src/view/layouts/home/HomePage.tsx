@@ -52,10 +52,10 @@ export default function HomePage() {
         <div className="container relative z-10">
           <div className="flex max-w-4xl flex-col gap-6">
             <div id="title" className="hero-reveal flex flex-col gap-4">
-              <span className="w-fit rounded-full border border-white/15 bg-white/10 px-4 py-2 font-inter text-xs font-semibold uppercase tracking-[0.25em] text-generalText backdrop-blur">
+              <span className="w-fit max-w-full break-words rounded-full border border-white/15 bg-white/10 px-4 py-2 text-center font-inter text-xs font-semibold uppercase tracking-[0.14em] text-generalText backdrop-blur [overflow-wrap:anywhere] sm:tracking-[0.25em]">
                 Desenvolvimento web sob medida
               </span>
-              <h1 className="max-w-4xl font-anton text-5xl leading-[.94] text-lightText sm:text-6xl lg:text-7xl xl:text-8xl">
+              <h1 className="max-w-4xl break-words font-anton text-5xl leading-[.94] text-lightText [overflow-wrap:anywhere] sm:text-6xl lg:text-7xl xl:text-8xl">
                 Sites e sistemas que transformam visitantes em clientes.
               </h1>
             </div>
@@ -64,7 +64,7 @@ export default function HomePage() {
               id="description"
               className="hero-reveal max-w-2xl"
             >
-              <p className="font-inter text-base leading-7 text-middleGrayColor sm:text-lg">
+              <p className="break-words font-inter text-base leading-7 text-middleGrayColor [overflow-wrap:anywhere] sm:text-lg">
                 Eu crio páginas, plataformas e integrações com foco em
                 performance, clareza e conversão. Você sai com uma presença
                 digital pronta para vender, captar leads e sustentar o crescimento
@@ -83,7 +83,7 @@ export default function HomePage() {
                     href={whatsappLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-12 items-center justify-center gap-3 rounded-md bg-generalText px-5 font-anton text-lg tracking-widest text-primary shadow-[0_14px_35px_rgba(245,166,35,.28)] transition-colors hover:bg-[#ffbd4f]"
+                    className="inline-flex min-h-12 items-center justify-center gap-3 rounded-md bg-generalText px-4 text-center font-anton text-lg tracking-wide text-primary shadow-[0_14px_35px_rgba(245,166,35,.28)] transition-colors hover:bg-[#ffbd4f] sm:px-5 sm:tracking-widest"
                   >
                     <Image
                       src="/icons/whatsapp.png"
@@ -99,7 +99,7 @@ export default function HomePage() {
                     href={emailLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-12 items-center justify-center rounded-md border border-white/20 bg-white/10 px-5 font-inter text-sm font-semibold uppercase tracking-[0.18em] text-lightText backdrop-blur transition-colors hover:border-generalText hover:text-generalText"
+                    className="inline-flex min-h-12 items-center justify-center rounded-md border border-white/20 bg-white/10 px-4 text-center font-inter text-sm font-semibold uppercase tracking-[0.12em] text-lightText backdrop-blur transition-colors hover:border-generalText hover:text-generalText sm:px-5 sm:tracking-[0.18em]"
                   >
                     Enviar briefing
                   </motion.a>

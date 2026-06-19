@@ -1,0 +1,286 @@
+- generic [active] [ref=e1]:
+  - banner:
+    - navigation:
+      - generic [ref=e3]:
+        - link "THIAGO.DEV" [ref=e4] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e5]:
+          - button "Abrir menu":
+            - generic: Menu
+  - generic [ref=e10]:
+    - img "Thiago, desenvolvedor fullstack" [ref=e11]
+    - generic [ref=e15]:
+      - generic [ref=e16]:
+        - generic [ref=e17]: Desenvolvimento web sob medida
+        - heading "Sites e sistemas que transformam visitantes em clientes." [level=1] [ref=e18]
+      - paragraph [ref=e20]: Eu crio páginas, plataformas e integrações com foco em performance, clareza e conversão. Você sai com uma presença digital pronta para vender, captar leads e sustentar o crescimento do negócio.
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - link "PEDIR ORÇAMENTO" [ref=e24] [cursor=pointer]:
+            - /url: https://wa.me/5562986251491?text=Ol%C3%A1%2C%20Thiago!%20Vim%20do%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto.
+          - link "Enviar briefing" [ref=e25] [cursor=pointer]:
+            - /url: https://mail.google.com/mail/?view=cm&fs=1&to=thiagolpssouza@gmail.com&su=Quero%20desenvolver%20um%20site%20ou%20sistema&body=Oi%20Thiago%2C%20vim%20do%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto.
+        - generic [ref=e26]:
+          - link "GitHub de Thiago" [ref=e27] [cursor=pointer]:
+            - /url: https://github.com/thigaslps
+          - link "WhatsApp de Thiago" [ref=e28] [cursor=pointer]:
+            - /url: https://wa.me/5562986251491?text=Ol%C3%A1%2C%20Thiago!%20Vim%20do%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto.
+          - link "LinkedIn de Thiago" [ref=e29] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/thigaslps/
+      - generic [ref=e30]:
+        - generic [ref=e31]:
+          - strong [ref=e32]: 2+ anos
+          - text: criando produtos web reais
+        - generic [ref=e33]:
+          - strong [ref=e34]: Fullstack
+          - text: interface, API, banco e deploy
+        - generic [ref=e35]:
+          - strong [ref=e36]: SEO + UX
+          - text: páginas pensadas para contato
+  - generic [ref=e41]:
+    - generic [ref=e42]:
+      - generic [ref=e43]:
+        - generic [ref=e44]: Serviços
+        - heading "O que posso construir para o seu negócio" [level=2] [ref=e45]
+      - paragraph [ref=e46]: "Trabalho do planejamento ao deploy para você ter uma solução bonita, rápida e pronta para receber clientes. A prioridade é simples: cada tela precisa deixar a próxima ação óbvia."
+    - generic [ref=e47]:
+      - article [ref=e48]:
+        - generic [ref=e49]:
+          - img [ref=e51]
+          - generic [ref=e53]:
+            - heading "Landing pages para vender" [level=3] [ref=e54]
+            - paragraph [ref=e55]: Páginas rápidas, responsivas e focadas em transformar tráfego em conversas pelo WhatsApp, formulários ou agenda.
+        - list [ref=e56]:
+          - listitem [ref=e57]: Copy orientada a conversão
+          - listitem [ref=e59]: SEO técnico
+          - listitem [ref=e61]: Métricas e eventos
+      - article [ref=e63]:
+        - generic [ref=e64]:
+          - img [ref=e66]
+          - generic [ref=e68]:
+            - heading "Sistemas web sob medida" [level=3] [ref=e69]
+            - paragraph [ref=e70]: Dashboards, portais, áreas internas e produtos digitais com interface clara, API, banco de dados e deploy.
+        - list [ref=e71]:
+          - listitem [ref=e72]: Front-end moderno
+          - listitem [ref=e74]: Back-end escalável
+          - listitem [ref=e76]: Painéis administrativos
+      - article [ref=e78]:
+        - generic [ref=e79]:
+          - img [ref=e81]
+          - generic [ref=e83]:
+            - heading "Integrações e automações" [level=3] [ref=e84]
+            - paragraph [ref=e85]: Conecto ferramentas, APIs e processos para reduzir trabalho manual e deixar sua operação mais previsível.
+        - list [ref=e86]:
+          - listitem [ref=e87]: APIs e webhooks
+          - listitem [ref=e89]: Fluxos automatizados
+          - listitem [ref=e91]: Manutenção evolutiva
+    - generic [ref=e93]:
+      - generic [ref=e94]:
+        - generic [ref=e95]:
+          - img [ref=e96]
+          - generic [ref=e98]: Processo sem ruído
+        - generic [ref=e99]:
+          - generic [ref=e100]:
+            - generic [ref=e101]: "1"
+            - generic [ref=e102]: Diagnóstico do objetivo
+          - generic [ref=e103]:
+            - generic [ref=e104]: "2"
+            - generic [ref=e105]: Protótipo e escopo claro
+          - generic [ref=e106]:
+            - generic [ref=e107]: "3"
+            - generic [ref=e108]: Desenvolvimento com entregas
+          - generic [ref=e109]:
+            - generic [ref=e110]: "4"
+            - generic [ref=e111]: Publicação e acompanhamento
+      - link "Conversar agora" [ref=e112] [cursor=pointer]:
+        - /url: https://wa.me/5562986251491?text=Ol%C3%A1%2C%20Thiago!%20Vim%20do%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto.
+        - text: Conversar agora
+        - img [ref=e113]
+  - generic [ref=e118]:
+    - generic [ref=e121]:
+      - generic [ref=e122]: Planeje. Desenvolva. Lance. Venda.
+      - generic [ref=e123]: Planeje. Desenvolva. Lance. Venda.
+    - generic [ref=e124]: Por trás da entrega
+    - generic [ref=e127]:
+      - img "Foto de Thiago" [ref=e129]
+      - generic [ref=e130]:
+        - heading "Desenvolvimento com visão de negócio." [level=2] [ref=e132]
+        - generic [ref=e133]:
+          - paragraph [ref=e134]: "Sou Thiago, desenvolvedor fullstack. Entro no projeto para conectar design, tecnologia e objetivo comercial: captar leads, apresentar seu serviço com clareza e criar sistemas que não travem quando a operação crescer."
+          - generic [ref=e135]:
+            - generic [ref=e136]:
+              - strong [ref=e137]: Clareza
+              - text: escopo e próximos passos definidos
+            - generic [ref=e138]:
+              - strong [ref=e139]: Velocidade
+              - text: páginas leves e responsivas
+            - generic [ref=e140]:
+              - strong [ref=e141]: Evolução
+              - text: base pronta para novas features
+          - link "Ver trabalhos recentes" [ref=e142] [cursor=pointer]:
+            - /url: "#projectsSection"
+  - generic [ref=e147]:
+    - generic [ref=e148]:
+      - img "gif build" [ref=e149]
+      - generic [ref=e150]: STACK
+    - generic [ref=e151]:
+      - generic [ref=e152]:
+        - heading "Tecnologias para produtos rápidos e fáceis de evoluir" [level=2] [ref=e153]
+        - paragraph [ref=e154]: A escolha da stack considera performance, SEO, integrações, manutenção e custo de operação. O objetivo é entregar algo que funcione bem no lançamento e continue simples de melhorar.
+      - generic [ref=e155]:
+        - generic [ref=e156]:
+          - img "Next.js" [ref=e157]
+          - generic [ref=e158]: Next.js
+        - generic [ref=e159]:
+          - img "Javascript" [ref=e160]
+          - generic [ref=e161]: Javascript
+        - generic [ref=e162]:
+          - img "Typescript" [ref=e163]
+          - generic [ref=e164]: Typescript
+        - generic [ref=e165]:
+          - img "React" [ref=e166]
+          - generic [ref=e167]: React
+        - generic [ref=e168]:
+          - img "Node.js" [ref=e169]
+          - generic [ref=e170]: Node.js
+        - generic [ref=e171]:
+          - img "Tailwind CSS" [ref=e172]
+          - generic [ref=e173]: Tailwind CSS
+        - generic [ref=e174]:
+          - img "Sass" [ref=e175]
+          - generic [ref=e176]: Sass
+        - generic [ref=e177]:
+          - img "GSAP" [ref=e178]
+          - generic [ref=e179]: GSAP
+        - generic [ref=e180]:
+          - img "Framer Motion" [ref=e181]
+          - generic [ref=e182]: Framer Motion
+        - generic [ref=e183]:
+          - img "MySQL" [ref=e184]
+          - generic [ref=e185]: MySQL
+        - generic [ref=e186]:
+          - img "PostgreSQL" [ref=e187]
+          - generic [ref=e188]: PostgreSQL
+        - generic [ref=e189]:
+          - img "Prisma" [ref=e190]
+          - generic [ref=e191]: Prisma
+        - generic [ref=e192]:
+          - img "Git" [ref=e193]
+          - generic [ref=e194]: Git
+  - generic [ref=e199]:
+    - generic [ref=e200]:
+      - generic [ref=e201]:
+        - generic [ref=e202]:
+          - img "gif build" [ref=e203]
+          - generic [ref=e204]: PROJETOS
+        - heading "Entregas recentes e o tipo de problema que resolvem" [level=2] [ref=e205]
+      - paragraph [ref=e206]: "Estes projetos mostram domínio do ciclo completo: interface, integrações, regras de negócio, banco de dados e publicação. A mesma base técnica pode virar uma landing page, um painel interno ou uma plataforma para sua empresa."
+    - generic [ref=e207]:
+      - article [ref=e208]:
+        - generic [ref=e209]:
+          - generic [ref=e210]: Case 01
+          - generic [ref=e211]:
+            - heading "spellchecker" [level=3] [ref=e212]
+            - link "Abrir repositório spellchecker" [ref=e214] [cursor=pointer]:
+              - /url: https://github.com/thigaslps/spellchecker
+              - img [ref=e215]
+          - generic [ref=e217]: Typescript
+        - generic [ref=e219]:
+          - strong [ref=e220]: Biblioteca offline para melhorar formulários e reduzir erros.
+          - paragraph [ref=e221]: Correção de digitação e acentuação em tempo real, com sugestão automática ou card interativo quando há múltiplas opções. Funciona sem chamadas externas.
+      - article [ref=e224]:
+        - generic [ref=e225]:
+          - generic [ref=e226]: Case 02
+          - generic [ref=e227]:
+            - heading "apiTaskManagerGlobalParts" [level=3] [ref=e228]
+            - link "Abrir repositório apiTaskManagerGlobalParts" [ref=e230] [cursor=pointer]:
+              - /url: https://github.com/thigaslps/apiTaskManagerGlobalParts
+              - img [ref=e231]
+          - generic [ref=e233]: Java ○ spring boot
+        - generic [ref=e235]:
+          - strong [ref=e236]: Back-end escalável para operação de tarefas.
+          - paragraph [ref=e237]: API RESTful em Java com Spring Boot para criação, atualização, listagem e exclusão de atividades, preparada para integração com front-ends modernos.
+      - article [ref=e240]:
+        - generic [ref=e241]:
+          - generic [ref=e242]: Case 03
+          - generic [ref=e243]:
+            - heading "taskManagerGlobalParts" [level=3] [ref=e244]
+            - link "Abrir repositório taskManagerGlobalParts" [ref=e246] [cursor=pointer]:
+              - /url: https://github.com/thigaslps/taskManagerGlobalParts
+              - img [ref=e247]
+          - generic [ref=e249]: Next.js ○ Typescript ○ Tailwind ○ Motion
+        - generic [ref=e251]:
+          - strong [ref=e252]: Interface kanban para acompanhar rotinas com clareza.
+          - paragraph [ref=e253]: Front-end para gerenciamento de tarefas com layout responsivo, estados claros e fluxo visual para acompanhar atividades em andamento.
+      - article [ref=e256]:
+        - generic [ref=e257]:
+          - generic [ref=e258]: Case 04
+          - generic [ref=e259]:
+            - heading "Climate-System" [level=3] [ref=e260]
+            - link "Abrir repositório Climate-System" [ref=e262] [cursor=pointer]:
+              - /url: https://github.com/thigaslps/Climate-System
+              - img [ref=e263]
+          - generic [ref=e265]: Next.js ○ Typescript ○ Scss
+        - generic [ref=e267]:
+          - strong [ref=e268]: Consumo de API externa com experiência rápida e responsiva.
+          - paragraph [ref=e269]: Aplicação web em TypeScript e SCSS para exibir dados climáticos em tempo real de forma dinâmica, organizada e fácil de consultar.
+      - article [ref=e272]:
+        - generic [ref=e273]:
+          - generic [ref=e274]: Case 05
+          - generic [ref=e275]:
+            - heading "portfolio-2.0" [level=3] [ref=e276]
+            - link "Abrir repositório portfolio-2.0" [ref=e278] [cursor=pointer]:
+              - /url: https://github.com/thigaslps/portfolio-2.0
+              - img [ref=e279]
+          - generic [ref=e281]: Next.js ○ GSAP ○ Motion ○ Tailwind
+        - generic [ref=e283]:
+          - strong [ref=e284]: Presença digital com navegação fluida e foco comercial.
+          - paragraph [ref=e285]: Site pessoal construído com animações, performance e seções orientadas para apresentar serviços, projetos e caminhos de contato.
+    - generic [ref=e288]:
+      - generic [ref=e289]:
+        - generic [ref=e290]: Quer algo parecido para sua empresa?
+        - paragraph [ref=e291]: Vamos transformar sua ideia em uma entrega publicável.
+      - link "Chamar no WhatsApp" [ref=e292] [cursor=pointer]:
+        - /url: https://wa.me/5562986251491?text=Ol%C3%A1%2C%20Thiago!%20Vim%20do%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto.
+  - generic [ref=e297]:
+    - generic [ref=e298]:
+      - generic [ref=e299]:
+        - generic [ref=e300]:
+          - img "gif build" [ref=e301]
+          - generic [ref=e302]: EXPERIÊNCIA
+        - heading "Vivência em produto, software house e performance" [level=2] [ref=e303]
+      - paragraph [ref=e304]: "Já atuei em contextos diferentes, do desenvolvimento de features ao cuidado com SEO técnico. Isso ajuda a enxergar o projeto além da tela: performance, manutenção e objetivo comercial entram no escopo desde o início."
+    - generic [ref=e305]:
+      - article [ref=e306]:
+        - generic [ref=e307]:
+          - generic [ref=e308]: Fev 2026 - presente
+          - generic [ref=e309]: Simplex Analytics
+        - generic [ref=e310]:
+          - heading "Desenvolvedor FullStack | SEO" [level=3] [ref=e311]
+          - paragraph [ref=e312]: Desenvolvimento web, melhorias técnicas de SEO e suporte a produtos digitais orientados por dados.
+      - article [ref=e315]:
+        - generic [ref=e316]:
+          - generic [ref=e317]: Out 2024 - presente
+          - generic [ref=e318]: ForeLegal
+        - generic [ref=e319]:
+          - heading "Desenvolvedor FullStack" [level=3] [ref=e320]
+          - paragraph [ref=e321]: Construção de interfaces, APIs e funcionalidades para produto jurídico com foco em consistência e evolução.
+      - article [ref=e324]:
+        - generic [ref=e325]:
+          - generic [ref=e326]: Ago 2024 - Nov 2024
+          - generic [ref=e327]: X Software House
+        - generic [ref=e328]:
+          - heading "Desenvolvedor FullStack" [level=3] [ref=e329]
+          - paragraph [ref=e330]: Participação em projetos sob demanda, integração entre front-end e back-end e entregas com prazo definido.
+  - generic [ref=e338]:
+    - generic [ref=e339]:
+      - generic [ref=e340]: Próximo passo
+      - heading "Seu site pode ser um canal de aquisição, não só uma vitrine." [level=2] [ref=e341]
+      - paragraph [ref=e342]: Me chame com uma ideia, problema ou referência. Eu te ajudo a transformar isso em escopo, prioridade e uma primeira entrega.
+    - generic [ref=e343]:
+      - link "Chamar no WhatsApp" [ref=e344] [cursor=pointer]:
+        - /url: https://wa.me/5562986251491?text=Ol%C3%A1%2C%20Thiago!%20Vim%20do%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto.
+      - link "Enviar briefing" [ref=e345] [cursor=pointer]:
+        - /url: https://mail.google.com/mail/?view=cm&fs=1&to=thiagolpssouza@gmail.com&su=Quero%20desenvolver%20um%20site%20ou%20sistema&body=Oi%20Thiago%2C%20vim%20do%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto.
+  - button "Open Next.js Dev Tools" [ref=e351] [cursor=pointer]:
+    - img [ref=e352]

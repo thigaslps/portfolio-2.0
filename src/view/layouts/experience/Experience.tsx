@@ -4,7 +4,10 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLayoutEffect, useRef } from "react";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Experience() {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const containerExperienceRef = useRef<HTMLDivElement>(null);
   const containerTitleAllExperience = useRef<HTMLDivElement>(null);
 
@@ -30,93 +33,78 @@ export default function Experience() {
   ];
 
   useGSAP(() => {
-    setTimeout(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerExperienceRef.current,
-          start: "top 90%",
-          end: "bottom 80%",
-          scrub: 1,
-        },
-      });
+    const section = sectionRef.current;
+    const experiences = section
+      ? Array.from(section.querySelectorAll<HTMLDivElement>(".experience"))
+      : [];
+    const lines = section
+      ? Array.from(section.querySelectorAll<HTMLDivElement>(".lineExperience"))
+      : [];
 
-      const tl2 = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerExperienceRef.current,
-          start: "top 90%",
-          end: "bottom 80%",
-          scrub: 1,
-        },
-      });
-
-      const projects = gsap.utils.toArray<HTMLDivElement>(".experience");
-      projects.forEach((project, index) => {
-        tl.from(
-          project,
-          {
-            y: 20,
-            opacity: 0,
-            duration: 1,
-          },
-          index * 0.5
-        ).to(
-          project,
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-          },
-          index * 0.5
-        );
-      });
+    if (containerTitleAllExperience.current) {
       gsap.fromTo(
         containerTitleAllExperience.current,
+        { autoAlpha: 0, y: 28 },
         {
-          y: -50,
-        },
-        {
+          autoAlpha: 1,
           y: 0,
+          duration: 0.7,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: containerTitleAllExperience.current,
-            start: "top 80%",
-            end: "bottom 70%",
-            scrub: 1,
+            start: "top 82%",
+            once: true,
           },
         }
       );
-      const LineProject = gsap.utils.toArray<HTMLDivElement>(".lineExperience");
-      LineProject.forEach((line, index) => {
-        tl2
-          .from(
-            line,
-            {
-              scaleX: 0,
-            },
-            index * 0.5
+    }
+
+    gsap.set(experiences, { autoAlpha: 0, y: 28 });
+    gsap.set(lines, { scaleX: 0, transformOrigin: "left center" });
+
+    ScrollTrigger.batch(experiences, {
+      start: "top 86%",
+      once: true,
+      onEnter: (batch) => {
+        const batchLines = batch
+          .map((experience) =>
+            experience.querySelector<HTMLDivElement>(".lineExperience")
           )
-          .to(
-            line,
-            {
-              scaleX: 1,
-            },
-            index * 0.5
-          );
-      });
-    }, 500);
-  }, []);
+          .filter((line): line is HTMLDivElement => Boolean(line));
+
+        gsap.to(batch, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.65,
+          ease: "power3.out",
+          stagger: 0.12,
+          overwrite: "auto",
+        });
+
+        gsap.to(batchLines, {
+          scaleX: 1,
+          duration: 0.55,
+          ease: "power2.out",
+          stagger: 0.12,
+          delay: 0.18,
+          overwrite: "auto",
+        });
+      },
+    });
+  }, { scope: sectionRef });
 
   useLayoutEffect(() => {
     ScrollTrigger.refresh();
   }, []);
   return (
     <>
-      <div id="experienceSection">
+      <div id="experienceSection" ref={sectionRef}>
         <div className="flex flex-col gap-[3rem]">
           <div
             ref={containerTitleAllExperience}
-            className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end"
+            className="grid min-w-0 grid-cols-1 gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end"
           >
-            <div className="flex flex-col gap-4">
+            <div className="flex min-w-0 flex-col gap-4">
               <div className="flex items-center gap-4">
                 <Image
                   src={"/iconsAnimated/build.gif"}
@@ -130,11 +118,11 @@ export default function Experience() {
                   EXPERIÊNCIA
                 </span>
               </div>
-              <h2 className="font-anton text-5xl leading-none text-lightText sm:text-6xl">
+              <h2 className="break-words font-anton text-5xl leading-none text-lightText [overflow-wrap:anywhere] sm:text-6xl">
                 Vivência em produto, software house e performance
               </h2>
             </div>
-            <p className="font-inter text-base leading-7 text-subtitleColor">
+            <p className="break-words font-inter text-base leading-7 text-subtitleColor [overflow-wrap:anywhere]">
               Já atuei em contextos diferentes, do desenvolvimento de features
               ao cuidado com SEO técnico. Isso ajuda a enxergar o projeto além
               da tela: performance, manutenção e objetivo comercial entram no
@@ -144,30 +132,30 @@ export default function Experience() {
 
           <div
             ref={containerExperienceRef}
-            className="grid gap-5"
+            className="grid min-w-0 grid-cols-1 gap-5"
           >
             {experienceToShow.map((item, index: number) => {
               return (
                 <article
-                  className="experience grid gap-5 rounded-md border border-white/10 bg-white/[0.03] p-5 md:grid-cols-[0.7fr_1.3fr]"
+                  className="experience grid min-w-0 grid-cols-1 gap-5 rounded-md border border-white/10 bg-white/[0.03] p-5 md:grid-cols-[0.7fr_1.3fr]"
                   key={`div-experience-${index}`}
                 >
-                  <div className="flex flex-col gap-2">
+                  <div className="flex min-w-0 flex-col gap-2">
                     <span className="text-sm font-inter text-generalText">
                       {item.time}
                     </span>
 
-                    <span className="text-2xl font-anton text-lightText">
+                    <span className="break-words text-2xl font-anton text-lightText [overflow-wrap:anywhere]">
                       {item.name}
                     </span>
                   </div>
 
-                  <div className="flex flex-col gap-4">
-                    <h3 className="text-4xl font-anton leading-none text-lightText sm:text-5xl">
+                  <div className="flex min-w-0 flex-col gap-4">
+                    <h3 className="break-words font-anton text-4xl leading-none text-lightText [overflow-wrap:anywhere] sm:text-5xl">
                       {item.ocupation}
                     </h3>
 
-                    <p className="text-sm font-inter leading-6 text-subtitleColor">
+                    <p className="break-words font-inter text-sm leading-6 text-subtitleColor [overflow-wrap:anywhere]">
                       {item.highlights}
                     </p>
 

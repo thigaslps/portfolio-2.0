@@ -4,6 +4,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLayoutEffect, useRef } from "react";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function MyStack() {
   const imagesTechs = [
     { src: "/techs/next.webp", text: "Next.js" },
@@ -22,6 +24,7 @@ export default function MyStack() {
   ];
 
   const containerTechsRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const containerTitleAll = useRef<HTMLDivElement>(null);
   const containerTitle = useRef<HTMLDivElement>(null);
 
@@ -31,80 +34,71 @@ export default function MyStack() {
   }
 
   useGSAP(() => {
-    setTimeout(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerTechsRef.current,
-          start: "top 80%",
-          end: "bottom 70%",
-          scrub: 1,
-        },
-      });
+    const section = sectionRef.current;
+    const techs = section
+      ? Array.from(section.querySelectorAll<HTMLElement>(".tech"))
+      : [];
 
-      const techs = gsap.utils.toArray<HTMLElement>(".tech");
-
-      techs.forEach((tech, index) => {
-        tl.from(
-          tech,
-          {
-            y: 20,
-            opacity: 0,
-            duration: 1,
-          },
-          index * 0.5
-        ).to(
-          tech,
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-          },
-          index * 0.5
-        );
-      });
-
+    if (containerTitleAll.current) {
       gsap.fromTo(
         containerTitleAll.current,
+        { autoAlpha: 0, y: 24 },
         {
-          y: -50,
-        },
-        {
+          autoAlpha: 1,
           y: 0,
+          duration: 0.65,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: containerTitleAll.current,
-            start: "top 80%",
-            end: "bottom 70%",
-            scrub: 1,
+            start: "top 84%",
+            once: true,
           },
         }
       );
+    }
 
+    if (containerTitle.current) {
       gsap.fromTo(
         containerTitle.current,
+        { autoAlpha: 0, y: 24 },
         {
-          opacity: 0,
-          y: 10,
-        },
-        {
-          opacity: 1,
+          autoAlpha: 1,
           y: 0,
+          duration: 0.65,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: containerTitle.current,
-            start: "top 80%",
-            end: "bottom 70%",
-            scrub: 1,
+            start: "top 84%",
+            once: true,
           },
         }
       );
-    }, 500);
-  }, []);
+    }
+
+    gsap.set(techs, { autoAlpha: 0, y: 24 });
+
+    ScrollTrigger.batch(techs, {
+      start: "top 88%",
+      once: true,
+      onEnter: (batch) => {
+        gsap.to(batch, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power3.out",
+          stagger: 0.08,
+          overwrite: "auto",
+        });
+      },
+    });
+  }, { scope: sectionRef });
 
   useLayoutEffect(() => {
     ScrollTrigger.refresh();
   }, []);
   return (
     <>
-      <div className="mb-[8rem]">
+      <div ref={sectionRef} className="mb-[8rem]">
         <div className="flex flex-col gap-[3rem]">
           <div ref={containerTitleAll} className="flex items-center gap-4">
             <Image
@@ -119,15 +113,15 @@ export default function MyStack() {
               STACK
             </span>
           </div>
-          <div className="grid gap-[3rem] md:grid-cols-[0.8fr_1.2fr]">
+          <div className="grid min-w-0 grid-cols-1 gap-[3rem] md:grid-cols-[0.8fr_1.2fr]">
             <div
               ref={containerTitle}
-              className="flex flex-col gap-5"
+              className="flex min-w-0 flex-col gap-5"
             >
-              <h2 className="text-4xl sm:text-5xl font-anton text-lightText">
+              <h2 className="break-words font-anton text-4xl text-lightText [overflow-wrap:anywhere] sm:text-5xl">
                 Tecnologias para produtos rápidos e fáceis de evoluir
               </h2>
-              <p className="font-inter text-base leading-7 text-subtitleColor">
+              <p className="break-words font-inter text-base leading-7 text-subtitleColor [overflow-wrap:anywhere]">
                 A escolha da stack considera performance, SEO, integrações,
                 manutenção e custo de operação. O objetivo é entregar algo que
                 funcione bem no lançamento e continue simples de melhorar.
@@ -136,12 +130,12 @@ export default function MyStack() {
 
             <div
               ref={containerTechsRef}
-              className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
+              className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
             >
               {imagesTechs.map((items: TechItem, index: number) => {
                 return (
                   <div
-                    className="tech flex min-h-[72px] items-center gap-4 rounded-md border border-white/10 bg-white/[0.03] px-4"
+                    className="tech flex min-h-[72px] min-w-0 items-center gap-4 rounded-md border border-white/10 bg-white/[0.03] px-4"
                     key={`div-${index}`}
                   >
                     <Image
@@ -150,7 +144,7 @@ export default function MyStack() {
                       width={50}
                       height={50}
                     />
-                    <span className="text-[1.2rem] font-inter text-subtitleColor">
+                    <span className="min-w-0 break-words font-inter text-[1.2rem] text-subtitleColor [overflow-wrap:anywhere]">
                       {items.text}
                     </span>
                   </div>

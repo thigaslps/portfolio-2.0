@@ -7,6 +7,7 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const refTitle = useRef<HTMLDivElement>(null);
   const refLine = useRef<HTMLDivElement>(null);
   const refTitleDescription = useRef<HTMLDivElement>(null);
@@ -15,104 +16,92 @@ export default function About() {
   const refBelt = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    setTimeout(() => {
+    if (refTitle.current) {
       gsap.fromTo(
         refTitle.current,
+        { autoAlpha: 0, y: 24 },
         {
-          opacity: 0,
-          y: 20,
-        },
-        {
-          opacity: 1,
+          autoAlpha: 1,
           y: 0,
+          duration: 0.65,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: refTitle.current,
-            start: "top 80%",
-            end: "bottom 70%",
-            scrub: 1,
+            start: "top 84%",
+            once: true,
           },
         }
       );
+    }
 
+    if (refLine.current) {
       gsap.fromTo(
         refLine.current,
-        {
-          scaleX: 0,
-          transformOrigin: "center",
-        },
+        { scaleX: 0, transformOrigin: "left center" },
         {
           scaleX: 1,
+          duration: 0.65,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: refLine.current,
-            start: "top 80%",
-            end: "bottom 70%",
-            scrub: 1,
+            start: "top 86%",
+            once: true,
           },
         }
       );
+    }
 
+    if (refPhoto.current) {
       gsap.fromTo(
         refPhoto.current,
+        { autoAlpha: 0, y: 28 },
         {
-          opacity: 0,
-          y: 20,
-        },
-        {
-          opacity: 1,
+          autoAlpha: 1,
           y: 0,
+          duration: 0.7,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: refPhoto.current,
-            start: "top 80%",
-            end: "bottom 70%",
-            scrub: 1,
+            start: "top 84%",
+            once: true,
           },
         }
       );
+    }
 
+    const descriptionTargets = [
+      refTitleDescription.current,
+      refSubtitleDescription.current,
+    ].filter((target): target is HTMLDivElement => Boolean(target));
+
+    if (descriptionTargets.length > 0 && refTitleDescription.current) {
       gsap.fromTo(
-        refTitleDescription.current,
+        descriptionTargets,
+        { autoAlpha: 0, y: 28 },
         {
-          y: 20,
-          opacity: 0,
-        },
-        {
+          autoAlpha: 1,
           y: 0,
-          opacity: 1,
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: 0.12,
           scrollTrigger: {
             trigger: refTitleDescription.current,
-            start: "top 80%",
-            end: "bottom 70%",
-            scrub: 1,
+            start: "top 84%",
+            once: true,
           },
         }
       );
+    }
 
-      gsap.fromTo(
-        refSubtitleDescription.current,
-        {
-          y: 20,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          scrollTrigger: {
-            trigger: refSubtitleDescription.current,
-            start: "top 80%",
-            end: "bottom 70%",
-            scrub: 1,
-          },
-        }
-      );
-
+    if (refBelt.current) {
       gsap.to(refBelt.current, {
         xPercent: -50,
         duration: 28,
         ease: "none",
         repeat: -1,
       });
-    }, 500);
-  }, []);
+    }
+  }, { scope: sectionRef });
 
   useLayoutEffect(() => {
     ScrollTrigger.refresh();
@@ -120,7 +109,11 @@ export default function About() {
 
   return (
     <>
-      <div id="aboutSection" className="flex mb-[8rem] flex-col gap-6 pt-20 sm:pt-28">
+      <div
+        id="aboutSection"
+        ref={sectionRef}
+        className="flex mb-[8rem] flex-col gap-6 pt-20 sm:pt-28"
+      >
         <div className="w-full relative overflow-hidden py-8 sm:py-12">
           <div
             className="w-full"
@@ -157,8 +150,8 @@ export default function About() {
         <div ref={refLine} className="w-full h-[1px]">
           <div className="w-full h-[1px] bg-GreyDarkerBgColor"></div>
         </div>
-        <div className="grid w-full gap-[3rem] md:grid-cols-[0.9fr_1.1fr] md:items-center">
-          <div ref={refPhoto} className="w-full">
+        <div className="grid w-full min-w-0 grid-cols-1 gap-[3rem] md:grid-cols-[0.9fr_1.1fr] md:items-center">
+          <div ref={refPhoto} className="min-w-0 w-full">
             <Image
               src="/profile-photo.png"
               width={500}
@@ -168,25 +161,25 @@ export default function About() {
             />
           </div>
 
-          <div className="w-[100%] flex flex-col gap-6 lg:w-auto">
-            <div ref={refTitleDescription} className="leading-none">
-              <h2 className="text-middleGrayColor leading-none font-anton text-5xl sm:text-6xl">
+          <div className="flex w-full min-w-0 flex-col gap-6 lg:w-auto">
+            <div ref={refTitleDescription} className="min-w-0 leading-none">
+              <h2 className="break-words font-anton text-5xl leading-none text-middleGrayColor [overflow-wrap:anywhere] sm:text-6xl">
                 Desenvolvimento com visão de negócio.
               </h2>
             </div>
             <div
               ref={refSubtitleDescription}
-              className="flex flex-col gap-6 md:w-[100%]"
+              className="flex min-w-0 flex-col gap-6 md:w-full"
             >
-              <p className="text-subtitleColor leading-7 text-base">
+              <p className="break-words text-base leading-7 text-subtitleColor [overflow-wrap:anywhere]">
                 Sou Thiago, desenvolvedor fullstack. Entro no projeto para
                 conectar design, tecnologia e objetivo comercial: captar leads,
                 apresentar seu serviço com clareza e criar sistemas que não
                 travem quando a operação crescer.
               </p>
 
-              <div className="grid gap-4 sm:grid-cols-3">
-                <div className="border-l border-generalText pl-4">
+              <div className="grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-3">
+                <div className="min-w-0 border-l border-generalText pl-4">
                   <strong className="block font-anton text-3xl text-lightText">
                     Clareza
                   </strong>
@@ -194,7 +187,7 @@ export default function About() {
                     escopo e próximos passos definidos
                   </span>
                 </div>
-                <div className="border-l border-generalText pl-4">
+                <div className="min-w-0 border-l border-generalText pl-4">
                   <strong className="block font-anton text-3xl text-lightText">
                     Velocidade
                   </strong>
@@ -202,7 +195,7 @@ export default function About() {
                     páginas leves e responsivas
                   </span>
                 </div>
-                <div className="border-l border-generalText pl-4">
+                <div className="min-w-0 border-l border-generalText pl-4">
                   <strong className="block font-anton text-3xl text-lightText">
                     Evolução
                   </strong>

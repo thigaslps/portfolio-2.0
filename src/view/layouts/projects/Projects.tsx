@@ -7,6 +7,8 @@ import toast from "react-hot-toast";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink, faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
+gsap.registerPlugin(ScrollTrigger);
+
 interface GithubRepo {
   name: string;
   html_url: string;
@@ -19,6 +21,7 @@ interface GithubResponse {
 
 export default function Projects() {
   const [data, setData] = useState<GithubResponse | null>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const containerProjectRef = useRef<HTMLDivElement>(null);
   const containerTitleAllProjects = useRef<HTMLDivElement>(null);
 
@@ -95,81 +98,65 @@ export default function Projects() {
 
   useGSAP(
     () => {
-      setTimeout(() => {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: containerProjectRef.current,
-            start: "top 80%",
-            end: "bottom 70%",
-            scrub: 1,
-          },
-        });
+      const section = sectionRef.current;
+      const title = containerTitleAllProjects.current;
+      const projects = section
+        ? Array.from(section.querySelectorAll<HTMLDivElement>(".project"))
+        : [];
+      const lines = section
+        ? Array.from(section.querySelectorAll<HTMLDivElement>(".lineProject"))
+        : [];
 
-        const tl2 = gsap.timeline({
-          scrollTrigger: {
-            trigger: containerProjectRef.current,
-            start: "top 80%",
-            end: "bottom 70%",
-            scrub: 1,
-          },
-        });
-
-        const projects = gsap.utils.toArray<HTMLDivElement>(".project");
-        projects.forEach((project, index) => {
-          tl.from(
-            project,
-            {
-              y: 20,
-              opacity: 0,
-              duration: 1,
-            },
-            index * 0.5
-          ).to(
-            project,
-            {
-              y: 0,
-              opacity: 1,
-              duration: 1,
-            },
-            index * 0.5
-          );
-        });
+      if (title) {
         gsap.fromTo(
-          containerTitleAllProjects.current,
+          title,
+          { autoAlpha: 0, y: 28 },
           {
-            y: -50,
-          },
-          {
+            autoAlpha: 1,
             y: 0,
+            duration: 0.7,
+            ease: "power3.out",
             scrollTrigger: {
-              trigger: containerTitleAllProjects.current,
-              start: "top 80%",
-              end: "bottom 70%",
-              scrub: 1,
+              trigger: title,
+              start: "top 82%",
+              once: true,
             },
           }
         );
-        const LineProject = gsap.utils.toArray<HTMLDivElement>(".lineProject");
-        LineProject.forEach((line, index) => {
-          tl2
-            .from(
-              line,
-              {
-                scaleX: 0,
-              },
-              index * 0.5
-            )
-            .to(
-              line,
-              {
-                scaleX: 1,
-              },
-              index * 0.5
-            );
-        });
-      }, 500);
+      }
+
+      gsap.set(projects, { autoAlpha: 0, y: 28 });
+      gsap.set(lines, { scaleX: 0, transformOrigin: "left center" });
+
+      ScrollTrigger.batch(projects, {
+        start: "top 86%",
+        once: true,
+        onEnter: (batch) => {
+          const batchLines = batch
+            .map((project) => project.querySelector<HTMLDivElement>(".lineProject"))
+            .filter((line): line is HTMLDivElement => Boolean(line));
+
+          gsap.to(batch, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.65,
+            ease: "power3.out",
+            stagger: 0.12,
+            overwrite: "auto",
+          });
+
+          gsap.to(batchLines, {
+            scaleX: 1,
+            duration: 0.55,
+            ease: "power2.out",
+            stagger: 0.12,
+            delay: 0.18,
+            overwrite: "auto",
+          });
+        },
+      });
     },
-    { dependencies: [data?.content] }
+    { scope: sectionRef }
   );
 
   useLayoutEffect(() => {
@@ -179,13 +166,13 @@ export default function Projects() {
   }, [data]);
   return (
     <>
-      <div id="projectsSection" className="mb-[8rem]">
+      <div id="projectsSection" ref={sectionRef} className="mb-[8rem]">
         <div className="flex flex-col gap-[3rem]">
           <div
             ref={containerTitleAllProjects}
-            className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end"
+            className="grid min-w-0 grid-cols-1 gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end"
           >
-            <div className="flex flex-col gap-4">
+            <div className="flex min-w-0 flex-col gap-4">
               <div className="flex items-center gap-4">
                 <Image
                   src={"/iconsAnimated/build.gif"}
@@ -199,11 +186,11 @@ export default function Projects() {
                   PROJETOS
                 </span>
               </div>
-              <h2 className="font-anton text-5xl leading-none text-lightText sm:text-6xl">
+              <h2 className="break-words font-anton text-5xl leading-none text-lightText [overflow-wrap:anywhere] sm:text-6xl">
                 Entregas recentes e o tipo de problema que resolvem
               </h2>
             </div>
-            <p className="font-inter text-base leading-7 text-subtitleColor">
+            <p className="break-words font-inter text-base leading-7 text-subtitleColor [overflow-wrap:anywhere]">
               Estes projetos mostram domínio do ciclo completo: interface,
               integrações, regras de negócio, banco de dados e publicação. A
               mesma base técnica pode virar uma landing page, um painel interno
@@ -213,7 +200,7 @@ export default function Projects() {
 
           <div
             ref={containerProjectRef}
-            className="grid gap-5"
+            className="grid min-w-0 grid-cols-1 gap-5"
           >
             {projectsToShow.map((project, index) => {
               const githubData = data?.content.find(
@@ -226,53 +213,51 @@ export default function Projects() {
 
               return (
                 <article
-                  className="project grid gap-5 rounded-md border border-white/10 bg-white/[0.03] p-5 transition-colors hover:border-generalText/70 md:grid-cols-[0.95fr_1.35fr]"
+                  className="project grid min-w-0 grid-cols-1 gap-5 overflow-hidden rounded-md border border-white/10 bg-white/[0.03] p-4 transition-colors hover:border-generalText/70 sm:p-5 md:grid-cols-[0.95fr_1.35fr]"
                   key={`div-projects-${index}`}
                 >
-                  <div className="flex flex-col gap-4">
-                    <span className="font-inter text-xs font-bold uppercase tracking-[0.22em] text-generalText">
+                  <div className="flex min-w-0 flex-col gap-4">
+                    <span className="w-fit max-w-full font-inter text-xs font-bold uppercase tracking-[0.18em] text-generalText sm:tracking-[0.22em]">
                       Case {String(index + 1).padStart(2, "0")}
                     </span>
-                    <div className="flex items-start justify-between gap-4">
-                      <h3 className="break-words text-4xl font-anton leading-none text-lightText sm:text-5xl">
+                    <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+                      <h3 className="min-w-0 max-w-full break-words font-anton text-[2rem] leading-none text-lightText [overflow-wrap:anywhere] sm:text-5xl">
                         {project.name}
                       </h3>
-                      <div className="flex shrink-0 gap-3">
-                      <a
-                        href={repoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Abrir repositório ${project.name}`}
-                        className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-lightText transition-colors hover:border-generalText hover:text-generalText"
-                      >
-                        <FontAwesomeIcon
-                          icon={faUpRightFromSquare}
-                        />
-                      </a>
-                      {deployUrl ? (
+                      <div className="flex shrink-0 gap-3 self-start">
                         <a
-                          href={deployUrl}
+                          href={repoUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          aria-label={`Abrir deploy ${project.name}`}
+                          aria-label={`Abrir repositório ${project.name}`}
                           className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-lightText transition-colors hover:border-generalText hover:text-generalText"
                         >
-                          <FontAwesomeIcon icon={faLink} />
+                          <FontAwesomeIcon icon={faUpRightFromSquare} />
                         </a>
-                      ) : null}
+                        {deployUrl ? (
+                          <a
+                            href={deployUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Abrir deploy ${project.name}`}
+                            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-lightText transition-colors hover:border-generalText hover:text-generalText"
+                          >
+                            <FontAwesomeIcon icon={faLink} />
+                          </a>
+                        ) : null}
                       </div>
                     </div>
-                    <span className="text-sm font-inter text-subtitleColor">
+                    <span className="min-w-0 break-words font-inter text-sm text-subtitleColor [overflow-wrap:anywhere]">
                       {project.techs}
                     </span>
                   </div>
 
-                  <div className="flex flex-col justify-between gap-5">
-                    <div className="flex flex-col gap-3">
-                      <strong className="font-inter text-lg text-middleGrayColor">
+                  <div className="flex min-w-0 flex-col justify-between gap-5">
+                    <div className="flex min-w-0 flex-col gap-3">
+                      <strong className="min-w-0 break-words font-inter text-lg text-middleGrayColor [overflow-wrap:anywhere]">
                         {project.result}
                       </strong>
-                      <p className="text-sm font-inter leading-6 text-subtitleColor">
+                      <p className="min-w-0 break-words font-inter text-sm leading-6 text-subtitleColor [overflow-wrap:anywhere]">
                         {project.description}
                       </p>
                     </div>
@@ -286,12 +271,12 @@ export default function Projects() {
             })}
           </div>
 
-          <div className="flex flex-col items-start justify-between gap-5 rounded-md bg-generalText p-6 text-primary sm:flex-row sm:items-center">
-            <div>
-              <span className="font-inter text-xs font-bold uppercase tracking-[0.22em]">
+          <div className="flex min-w-0 flex-col items-start justify-between gap-5 rounded-md bg-generalText p-5 text-primary sm:flex-row sm:items-center sm:p-6">
+            <div className="min-w-0">
+              <span className="block max-w-full break-words font-inter text-xs font-bold uppercase tracking-[0.16em] [overflow-wrap:anywhere] sm:tracking-[0.22em]">
                 Quer algo parecido para sua empresa?
               </span>
-              <p className="mt-2 font-anton text-3xl leading-none">
+              <p className="mt-2 break-words font-anton text-3xl leading-none [overflow-wrap:anywhere]">
                 Vamos transformar sua ideia em uma entrega publicável.
               </p>
             </div>
@@ -299,7 +284,7 @@ export default function Projects() {
               href="https://wa.me/5562986251491?text=Ol%C3%A1%2C%20Thiago!%20Vim%20do%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-12 shrink-0 items-center justify-center rounded-md bg-primary px-5 font-inter text-sm font-bold uppercase tracking-[0.18em] text-lightText transition-colors hover:bg-[#2A2A2A]"
+              className="inline-flex min-h-12 w-full shrink-0 items-center justify-center rounded-md bg-primary px-4 text-center font-inter text-sm font-bold uppercase tracking-[0.12em] text-lightText transition-colors hover:bg-[#2A2A2A] sm:w-auto sm:px-5 sm:tracking-[0.18em]"
             >
               Chamar no WhatsApp
             </a>

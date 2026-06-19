@@ -10,10 +10,15 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
+  overflow-x: clip;
   color: #ffffff;
   font-family: "Inter", sans-serif;
 }
@@ -30,6 +35,13 @@ body {
 
 a {
   text-decoration: none;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
 }
 
 #tsparticles {

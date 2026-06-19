@@ -111,13 +111,24 @@ export default function Topbar() {
   const lenis = useLenis();
 
   useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+
     if (toggleMenu) {
-      document.body.style.overflow = "hidden";
+      html.style.overflow = "hidden";
+      body.style.overflow = "hidden";
       lenis?.stop();
     } else {
-      document.body.style.overflow = "auto";
+      html.style.overflow = "";
+      body.style.overflow = "";
       lenis?.start();
     }
+
+    return () => {
+      html.style.overflow = "";
+      body.style.overflow = "";
+      lenis?.start();
+    };
   }, [toggleMenu, lenis]);
 
   return (
@@ -223,7 +234,7 @@ export default function Topbar() {
                     <Link
                       href={link.link}
                       key={index}
-                      className="cursor-pointer text-lightText font-inter text-4xl overflow-hidden tracking-widest"
+                      className="max-w-full cursor-pointer overflow-hidden break-words text-center font-inter text-3xl tracking-wide text-lightText [overflow-wrap:anywhere] sm:text-4xl sm:tracking-widest"
                     >
                       <motion.div
                         variants={linkVars}
